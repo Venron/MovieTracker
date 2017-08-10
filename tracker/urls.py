@@ -9,6 +9,7 @@ app_name = "tracker"
 urlpatterns = [
     # default homepage (index site)
 
+    # Test
     # /tracker
     url(r'^$', views.index, name='index'),
 
