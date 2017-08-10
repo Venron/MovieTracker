@@ -31,6 +31,7 @@
                 <th>Season</th>
                 <th>Episode</th>
                 <th></th>
+                <th></th>
             </tr>
             {% for track in all_tracks %}
                 <tr>
@@ -58,15 +59,22 @@
                             style="font-size: 14px;"></span></a>
                     </td>
                     <td>
-                        <button class="mdc-button"
-                                style="font-family: 'Raleway', sans-serif; font-weight: bold;"><a
-                                href="{% url 'tracker:edit_track' track.id %}" style="color: gray;"><span
-                                class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</a>
-                        </button>
+                        <a href="{% url 'tracker:edit_track' track.id %}"
+                           style="color: gray; opacity: 1.0; font-size: 15px;"><span
+                                class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Edit</a>&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="{% url 'tracker:delete_track' track.id %}"
+                           style="color: gray; opacity: 1.0; font-size: 15px;"><span
+                                class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete</a>
                     </td>
                 </tr>
             {% endfor %}
         </table>
+    {% else %}
+        <p><h4 style="color: gray; opacity: 1.0;">Your list is empty! :(</h4></p>
+
+        <p><h4 style="color: gray; opacity: 1.0;">Why don't you start by adding a new track?</h4></p>
     {% endif %}
     <!-- Interaction error message -->
     {% if messages %}

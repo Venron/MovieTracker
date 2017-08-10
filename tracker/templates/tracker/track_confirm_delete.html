@@ -1,0 +1,17 @@
+{% extends "tracker/base.html" %}
+
+{% block title %} Delete Track {% endblock %}
+
+{% block tracker_active %} active {% endblock %}
+
+{% block body %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the item?</p>
+        <input class="btn btn-danger" type="submit" value="Confirm"/>
+        <button class="btn btn-default" onclick="window.history.back();" type="button">Cancel
+        </button>
+    </form>
+
+{% endblock %}

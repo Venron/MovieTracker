@@ -46,4 +46,6 @@ urlpatterns = [
     # /tracker/app/edit/<id>
     url(r'^app/edit/(?P<pk>[0-9]+)$', views.EditExistingTrack.as_view(), name='edit_track'),
 
+    # /tracker/app/delete/<id>
+    url(r'^app/delete/(?P<pk>[0-9]+)$', views.DeleteExistingTrack.as_view(), name='delete_track'),
 ]

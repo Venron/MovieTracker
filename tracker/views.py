@@ -105,6 +105,8 @@ class RegisterUserFormView(View):
     form_class = UserForm
     template_name = "tracker/register_form.html"
 
+    username = ""
+
     # First access to page
     def get(self, request):
         form = self.form_class(None)
@@ -122,8 +124,11 @@ class RegisterUserFormView(View):
             user.set_password(password)
             user.save()
 
-            return redirect("tracker:index")
+            #return redirect("tracker:index")
+            return render(request, "tracker/registration_success.html", {"form": form, "username": username})
         return render(request, self.template_name, {"form": form})
+
+
 
 
 class LoginUserFormView(View):
@@ -209,4 +214,8 @@ class EditExistingTrack(UpdateView):
     form_class = TrackForm
     template_name = "tracker/edit_track.html"
     # fields = ["title", "season", "episode"]
+    success_url = reverse_lazy("tracker:tracker_app")
+
+class DeleteExistingTrack(DeleteView):
+    model = Track
     success_url = reverse_lazy("tracker:tracker_app")
