@@ -1,0 +1,16 @@
+{% extends "tracker/base.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block register_active %} active {% endblock %}
+
+{% block body %}
+
+    <form class="form-horizontal col-sm-offset-3" action="" method="post" role="form" enctype="multipart/form-data">
+        <!-- Security -->
+        {% csrf_token %}
+        {% include "tracker/form_template.html" %}
+        <button type="submit" class="custombtn btn col-sm-offset-3"><a style="color: black; font-weight: bold;">Register</a></button>
+    </form>
+
+{% endblock %}
