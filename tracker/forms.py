@@ -39,10 +39,6 @@ class UserLoginForm(forms.Form):
 
 
 class TrackForm(forms.ModelForm):
-    # season = forms.IntegerField(widget=NumberInput(attrs={'style': style, 'class': width}))
-    # started = forms.DateTimeField(widget=DateTimeInput(auto_now_add=True, attrs={'style': style, 'class': width}))
-    # title = forms.CharField(widget=TextInput(attrs={'style': style, 'class': width}))
-
     title = models.CharField()
     season = models.PositiveIntegerField()
     episode = models.PositiveIntegerField()
@@ -52,7 +48,7 @@ class TrackForm(forms.ModelForm):
         model = Track
         fields = ["title", "season", "episode"]
         widgets = {
-            'title' : TextInput(attrs={'style': style, 'class': width}),
-            'season' : NumberInput(attrs={'style': style, 'class': width}),
-            'episode' : NumberInput(attrs={'style': style, 'class': width}),
+            'title': TextInput(attrs={'style': style, 'class': width}),
+            'season': NumberInput(attrs={'style': style, 'class': width}),
+            'episode': NumberInput(attrs={'style': style, 'class': width}),
         }

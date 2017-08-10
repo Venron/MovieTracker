@@ -200,12 +200,13 @@ class CreateNewTrackFormView(View):
             track.save()
             return redirect("tracker:tracker_app")
         else:
-            return render(request, self.template_name, {"form" : form, "add_error" : "Sorry! We could not add your track. Please try again later."})
+            return render(request, self.template_name,
+                          {"form": form, "add_error": "Sorry! We could not add your track. Please try again later."})
 
 
 class EditExistingTrack(UpdateView):
     model = Track
     form_class = TrackForm
-    template_name = "edit_track.html"
+    template_name = "tracker/edit_track.html"
     # fields = ["title", "season", "episode"]
     success_url = reverse_lazy("tracker:tracker_app")
