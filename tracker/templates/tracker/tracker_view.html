@@ -1,0 +1,133 @@
+{% extends "tracker/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Track your progress {% endblock %}
+
+{% block tracker_active %} active {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2">
+{#            <button class="mdc-button"#}
+{#                    style="font-family: 'Raleway', sans-serif; font-weight: bold;"><span#}
+{#                    class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add#}
+{#            </button>#}
+            <a href="{% url 'tracker:add_track' %}" style="color: gray; opacity: 1.0; font-size: 15px;"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add</a>
+        </div>
+    </div>
+    <br>
+
+    {% if all_tracks %}
+        <table class="col-sm-offset-1 col-sm-10" style="color: gray; opacity: 1.0; font-size: 30px;">
+            <tr>
+                <th>#</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;Title</th>
+                <th>Season</th>
+                <th>Episode</th>
+                <th></th>
+            </tr>
+            {% for track in all_tracks %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{ track.title|truncatechars:20 }}</td>
+                    <td><span
+                            style="font-size: 24px;">Season:&nbsp;<a href="{% url 'tracker:dec_season' track.id %}"
+                                                                     style="color: gray; opacity: 1.0; font-size: 30px;"><span
+                            class="glyphicon glyphicon-minus"
+                            style="font-size: 14px;"></span></a>&nbsp;<span
+                            style="">{{ track.season }}</span>&nbsp;<a href="{% url 'tracker:inc_season' track.id %}"
+                                                                       style="color: gray; opacity: 1.0; font-size: 30px;"><span
+                            class="glyphicon glyphicon-plus"
+                            style="font-size: 14px;"></span></a></span>
+                    </td>
+                    <td>
+                        Episode: &nbsp;<a
+                            href="{% url 'tracker:dec_episode' track.id %}"
+                            style="color: gray; opacity: 1.0; font-size: 30px;"><span
+                            class="glyphicon glyphicon-minus"
+                            style="font-size: 14px;"></span></a>&nbsp;<span
+                            style="">{{ track.episode }}</span>&nbsp;<a href="{% url 'tracker:inc_episode' track.id %}"
+                                                                        style="color: gray; opacity: 1.0; font-size: 30px;"><span
+                            class="glyphicon glyphicon-plus"
+                            style="font-size: 14px;"></span></a>
+                    </td>
+                    <td>
+                        <button class="mdc-button"
+                                style="font-family: 'Raleway', sans-serif; font-weight: bold;"><a
+                                href="{% url 'tracker:edit_track' track.id %}" style="color: gray;"><span
+                                class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit</a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+
+
+
+    {#    {% if all_tracks %}#}
+    {#        <ol class="col-sm-offset-1 col-sm-10" style="color: gray; opacity: 1.0; font-size: 30px;">#}
+    {#            {% for track in all_tracks %}#}
+    {#                <li>{{ track.title }}&nbsp;&nbsp;<span#}
+    {#                    style="font-size: 24px;">Season:&nbsp;<a href="{% url 'tracker:dec_season' track.id %}"#}
+    {#                                                             style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
+    {#                    class="glyphicon glyphicon-minus"#}
+    {#                    style="font-size: 14px;"></span></a>&nbsp;<span#}
+    {#                    style="">{{ track.season }}</span>&nbsp;<a href="{% url 'tracker:inc_season' track.id %}"#}
+    {#                                                               style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
+    {#                    class="glyphicon glyphicon-plus"#}
+    {#                    style="font-size: 14px;"></span></a>, Episode: &nbsp;<a#}
+    {#                    href="{% url 'tracker:dec_episode' track.id %}"#}
+    {#                    style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
+    {#                    class="glyphicon glyphicon-minus"#}
+    {#                    style="font-size: 14px;"></span></a>&nbsp;<span#}
+    {#                    style="">{{ track.episode }}</span>&nbsp;<a href="{% url 'tracker:inc_episode' track.id %}"#}
+    {#                                                                style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
+    {#                    class="glyphicon glyphicon-plus"#}
+    {#                    style="font-size: 14px;"></span></a></span>#}
+    {#            {% endfor %}#}
+    {#        </ol>#}
+    {#    {% endif %}#}
+
+
+    <!-- Interaction error message -->
+    {% if messages %}
+        <script>
+            {#            $("#messages-modal").modal("toggle");#}
+
+            function clickBtn() {
+                document.getElementById("modalBtn").click();
+            }
+        </script>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".messages-modal" id="modalBtn"
+                style="display: none;">Small
+            modal
+        </button>
+
+        <div class="modal fade messages-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true" id="messages-modal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <ul class="messages" style="list-style-type: none;">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}"
+                                style="padding-left: 0px; padding-right: 10%; padding-top: 10px; padding-bottom: 10px;"
+                                align="center">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Trackr{% endblock %}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'tracker/material/button/button/dist/mdc.button.css' %}">
+    <link rel="stylesheet" href="{% static 'tracker/material/button/ripple/dist/mdc.ripple.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        button[type=submit] {
+            border-radius: 0;
+            font-family: 'Raleway', sans-serif;
+            font-weight: bold;
+            border-width: 3px;
+            border-color: black;
+            background: white;
+        }
+
+        table td {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<!-- <body background="{% static '/tracker/images/background-image2.png' %}" style="font-family: 'Raleway', sans-serif;"> -->
+<body style="font-family: 'Raleway', sans-serif; background-color: whitesmoke;" onload="clickBtn()">
+<!-- Navigation -->
+<header>
+    <div class="container" style="padding-top: 10px;">
+        <nav class="navbar navbar-default" role="navigation"
+             style="position: relative; border-radius: 0; border-width: 3px; border-color: black;">
+            <div class="navbar-header" style="float: left; padding: 15px; text-align: center; width: 100%">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'tracker:index' %}"
+                   style="font-family: 'Satisfy', cursive; font-size: 30px; position: absolute; left: 50%; margin-left: -50px !important; display: block; color: black;">Tracker</a>
+            </div>
+            <div class="navbar-collapse collapse" id="topNavBar">
+
+                <ul class="nav navbar-nav navbar-left" style="font-size: 20px; font-weight: bold;">
+                    <li class="{% block home_active %}inactive{% endblock %}"><a href="{% url 'tracker:home' %}"
+                                                                                 style="color: black;">HOME</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="{% block tracker_active %}inactive{% endblock %}"><a
+                                href="{% url 'tracker:tracker_app' %}" style="color: black;">TRACKER</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right"
+                    style="font-size: 20px; font-weight: bold; padding-right: 15px;">
+                    {% if user.is_authenticated %}
+                        <li class="{% block account_active %}inactive{% endblock %}"><a
+                                href="{% url 'tracker:index' %}"
+                                style="color: black;">{{ user.username }}</a>
+                        </li>
+                        <li class="{% block logout_active %}inactive{% endblock %}"><a href="{% url 'tracker:logout' %}"
+                                                                                       style="color: black;">LOGOUT</a>
+                        </li>
+                    {% else %}
+                        <li class="{% block register_active %}inactive{% endblock %}"><a
+                                href="{% url 'tracker:register' %}"
+                                style="color: black;">REGISTER</a>
+                        </li>
+                        <li class="{% block login_active %}inactive{% endblock %}"><a href="{% url 'tracker:login' %}"
+                                                                                      style="color: black;">LOGIN</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</main>
+
+
+<div class="container">
+    <div class="footer">
+        <div style="padding: 12px; background: #f5f5f5">
+            <br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col-xs-12" align="center">
+                    <span align="center" id="footer-copyright">Copyright (c) 2017 by Marc Friedrich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'tracker/js/custom.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="{% static 'tracker/material/button/ripple/dist/mdc.ripple.js' %}"></script>
+
+<script>
+    var a = document.querySelectorAll('.mdc-button');
+    for (var i = 0; i < a.length; ++i) {
+        mdc.ripple.MDCRipple.attachTo(a[i]);
+    }
+</script>
+</body>
+
+</html>

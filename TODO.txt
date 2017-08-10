@@ -1,0 +1,5 @@
+- Activity log
+- Profile page
+- Friend system
+- Message system
+- Cut too long Track titles
