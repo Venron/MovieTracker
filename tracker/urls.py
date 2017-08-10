@@ -44,6 +44,6 @@ urlpatterns = [
     url(r'^app/add_track/$', views.CreateNewTrackFormView.as_view(), name='add_track'),
 
     # /tracker/app/edit/<id>
-    url(r'^app/edit/(?P<track_id>[0-9]+)$', views.editTrack, name='edit_track'),
+    url(r'^app/edit/(?P<pk>[0-9]+)$', views.EditExistingTrack.as_view(), name='edit_track'),
 
 ]

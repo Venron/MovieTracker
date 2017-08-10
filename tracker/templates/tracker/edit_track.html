@@ -1,5 +1,16 @@
 {% extends "tracker/base.html" %}
 
-{% block title %} Add new Track {% endblock %}
+{% block title %} Edit Track {% endblock %}
 
 {% block tracker_active %} active {% endblock %}
+
+{% block body %}
+
+    <form class="form-horizontal col-sm-offset-3" action="" method="post" role="form" enctype="multipart/form-data">
+        <!-- Security -->
+        {% csrf_token %}
+        {% include "tracker/form_template.html" %}
+        <button type="submit" class="custombtn btn col-sm-offset-3"><a style="color: black; font-weight: bold;">Apply</a></button>
+    </form>
+
+{% endblock %}

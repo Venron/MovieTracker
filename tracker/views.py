@@ -205,5 +205,7 @@ class CreateNewTrackFormView(View):
 
 class EditExistingTrack(UpdateView):
     model = Track
-    fields = ["title", "season", "episode"]
+    form_class = TrackForm
+    template_name = "edit_track.html"
+    # fields = ["title", "season", "episode"]
     success_url = reverse_lazy("tracker:tracker_app")
