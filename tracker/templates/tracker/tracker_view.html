@@ -13,11 +13,12 @@
 
         </div>
         <div class="col-md-2">
-{#            <button class="mdc-button"#}
-{#                    style="font-family: 'Raleway', sans-serif; font-weight: bold;"><span#}
-{#                    class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add#}
-{#            </button>#}
-            <a href="{% url 'tracker:add_track' %}" style="color: gray; opacity: 1.0; font-size: 15px;"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add</a>
+            {#            <button class="mdc-button"#}
+            {#                    style="font-family: 'Raleway', sans-serif; font-weight: bold;"><span#}
+            {#                    class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add#}
+            {#            </button>#}
+            <a href="{% url 'tracker:add_track' %}" style="color: gray; opacity: 1.0; font-size: 15px;"><span
+                    class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add</a>
         </div>
     </div>
     <br>
@@ -67,37 +68,6 @@
             {% endfor %}
         </table>
     {% endif %}
-
-
-
-
-
-
-    {#    {% if all_tracks %}#}
-    {#        <ol class="col-sm-offset-1 col-sm-10" style="color: gray; opacity: 1.0; font-size: 30px;">#}
-    {#            {% for track in all_tracks %}#}
-    {#                <li>{{ track.title }}&nbsp;&nbsp;<span#}
-    {#                    style="font-size: 24px;">Season:&nbsp;<a href="{% url 'tracker:dec_season' track.id %}"#}
-    {#                                                             style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
-    {#                    class="glyphicon glyphicon-minus"#}
-    {#                    style="font-size: 14px;"></span></a>&nbsp;<span#}
-    {#                    style="">{{ track.season }}</span>&nbsp;<a href="{% url 'tracker:inc_season' track.id %}"#}
-    {#                                                               style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
-    {#                    class="glyphicon glyphicon-plus"#}
-    {#                    style="font-size: 14px;"></span></a>, Episode: &nbsp;<a#}
-    {#                    href="{% url 'tracker:dec_episode' track.id %}"#}
-    {#                    style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
-    {#                    class="glyphicon glyphicon-minus"#}
-    {#                    style="font-size: 14px;"></span></a>&nbsp;<span#}
-    {#                    style="">{{ track.episode }}</span>&nbsp;<a href="{% url 'tracker:inc_episode' track.id %}"#}
-    {#                                                                style="color: gray; opacity: 1.0; font-size: 30px;"><span#}
-    {#                    class="glyphicon glyphicon-plus"#}
-    {#                    style="font-size: 14px;"></span></a></span>#}
-    {#            {% endfor %}#}
-    {#        </ol>#}
-    {#    {% endif %}#}
-
-
     <!-- Interaction error message -->
     {% if messages %}
         <script>
